@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>biblimap</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <script>
+            $(document).ready(function () {
+                url = getURL(true,true,false);
+                if (url['location'] !== false && url['location'] !== null) {
+                    bib = url['location'];
+                }
+                else {
+                    bib = "HTWK";
+                    setURL("HTWK",false,false,false);
+                }
+                if (url['lvl'] !== false && url['lvl'] !== null) {
+                    lvl = url['lvl'];
+                }
+                else {
+                    lvl = 0;
+                    setURL(false,lvl,false,false);
+                }
+                    $.ajax({
+                        url: 'maps/'+bib+'/'+lvl+'OG.svg',
+                        dataType: 'xml',
+                        success: function (data) {
+                            $('#svg-container').empty().append(data.documentElement);
+                            // wenn Seite geladen ist init-function aufrufen
+                            document.addEventListener("DOMContentLoaded", init());
+                        },
+                        error: function () {
+                            alert('Fehler beim Laden der SVG-Datei. Zur vorherigen Etage zurückkehren?');
+                            lvlUpDown(false);
+                        }
+                    });
+                });
+    </script>
+
+    <div id="location_banner">
+        <div id="location_text">Sitzplatz auswählen</div>
+        <button id="copyClipboard" onclick="copy_share()">kopieren / teilen</button>
+    </div>
+
+    <div id="svg-container"></div>
+
+    <div id="nav">
+        <button id="btn_up" onclick="lvlUpDown(true)">Etage hoch</button>
+        <button id="btn_down" onclick="lvlUpDown(false)">Etage runter</button>
+        <button id="btn_sel_bib">Bib wählen</button>
+    </div>
+    
+</body>
+
+</html>

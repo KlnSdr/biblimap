@@ -1,0 +1,22 @@
+#location_banner {
+    height: 4vh;
+    background-color: #6464b9;
+    color: white;
+    text-align: center;
+    padding: 1vh;
+    display: block ruby;
+}
+
+#nav {
+    position: fixed;
+    right: 5vh;
+    top: 80vh;
+    display: inline-grid;
+    background-color: #6464b9;
+    padding: 1vh;
+}
+
+#btn_up, #btn_down, #btn_sel_bib {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
