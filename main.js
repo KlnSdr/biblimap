@@ -118,6 +118,11 @@ function init() {
     for (var i = 0; i < elements.length; i++) {
         elements[i].addEventListener('click', whereami, false);
     }
+    // Stuhl (wenn vorhanden) hervorheben
+    chair = getURL(false,false,true)['chair'];
+    if (chair !== false) {
+        document.getElementById(chair).style.fill = "#ff009b";
+    }
 }
 
 function lvlUpDown(updown) {

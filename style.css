@@ -1,12 +1,3 @@
-#location_banner {
-    height: 4vh;
-    background-color: #6464b9;
-    color: white;
-    text-align: center;
-    padding: 1vh;
-    display: block ruby;
-}
-
 #nav {
     position: fixed;
     right: 5vh;
@@ -14,6 +5,32 @@
     display: inline-grid;
     background-color: #6464b9;
     padding: 1vh;
+}
+
+#location_banner{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: fit-content;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    background-color: #6464b9;
+    color: white;
+    text-align: center;
+    display: block ruby;
+    position: fixed;
+    width: 97vw;
+}
+
+#location_headline {
+    float: left;
+}
+
+#location_github {
+    float: right;
+    text-decoration: none;
+    color: white;
 }
 
 #btn_up, #btn_down, #btn_sel_bib {
