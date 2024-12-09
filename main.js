@@ -114,6 +114,7 @@ function whereami(event) {
 }
 
 function init() {
+    // alle Stuehle mit click-event ausstatten
     var elements = document.getElementsByClassName("rect_chair");
     for (var i = 0; i < elements.length; i++) {
         elements[i].addEventListener('click', whereami, false);
@@ -128,6 +129,10 @@ function init() {
     }
     catch(err) {
         console.log("konnte in url hinterlegten Stuhl nicht finden.")
+    }
+    // scroll-verhalten fuer mobile geraete definieren
+    if (isMobile()) {
+        // TODO
     }
 }
 

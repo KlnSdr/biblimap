@@ -37,6 +37,7 @@
     overflow: hidden;
     background-color: #6464b9;
     position: fixed;
+    z-index: 10;
 }
 
 .location_li {
@@ -60,3 +61,24 @@
 }
 /* END TOP NAV */
 
+/* BEGIN MOBILE VERSION */
+@media only screen and (max-width: 600px) {
+    #location_banner {
+        width: 100vw;
+
+    }
+    .location_li {
+        padding: 3px 16px;
+        float: none;
+    }
+    #svg-container {
+        overflow: scroll;
+        width: 100vw;
+        height:100vh;
+    }
+    #nav {
+        bottom: 1%;
+        right: 1%;
+    }
+  }
+/* END MOBILE VERSION */
