@@ -1,39 +1,62 @@
+/* BEGIN SIDE NAV */
 #nav {
     position: fixed;
-    right: 5vh;
-    top: 80vh;
+    right: 5%;
+    bottom: 10%;
     display: inline-grid;
-    background-color: #6464b9;
     padding: 1vh;
+    width: fit-content;
 }
 
+.nav_btn {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: #6464b980;
+    color: black;
+    border: 2px solid #6464b9;
+    border-radius: 12px;
+    padding: 3%;
+    font-size: large;
+}
+
+.nav_btn:hover {
+    background-color: #6464b9;
+    color: white;
+  }
+/* END SIDE NAV */
+
+
+/* BEGIN TOP NAV */
 #location_banner{
+    top: 0;
+    left: 0;
+    width: 100%;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    height: fit-content;
-    padding-left: 1vw;
-    padding-right: 1vw;
     background-color: #6464b9;
+    position: fixed;
+}
+
+.location_li {
+    display: inline;
+    float: left;
+    display: block;
     color: white;
     text-align: center;
-    display: block ruby;
-    position: fixed;
-    width: 97vw;
-}
-
-#location_headline {
-    float: left;
-}
-
-#location_github {
-    float: right;
+    padding: 14px 16px;
     text-decoration: none;
-    color: white;
 }
 
-#btn_up, #btn_down, #btn_sel_bib {
-    margin-top: 2vh;
-    margin-bottom: 2vh;
+.location_li a, a:hover, a:visited {
+    text-decoration: underline;
+    color: white;
+    cursor: pointer;
 }
+
+#location_text {
+    font-weight: bold;
+}
+/* END TOP NAV */
+

@@ -109,7 +109,7 @@ function whereami(event) {
     document.getElementById(chair.id).style.fill = "#ff009b";
 
     // bannertext aktualisieren
-    document.getElementById("location_text").innerHTML = getLocation() + ":\t" + chair.id;
+    document.getElementById("location_text").innerHTML = "Sitzplatz: " + getLocation() + ":\t" + chair.id;
 
 }
 
@@ -119,9 +119,15 @@ function init() {
         elements[i].addEventListener('click', whereami, false);
     }
     // Stuhl (wenn vorhanden) hervorheben
-    chair = getURL(false,false,true)['chair'];
-    if (chair !== false) {
-        document.getElementById(chair).style.fill = "#ff009b";
+    try {
+        chair = getURL(false,false,true)['chair'];
+        if (chair !== false) {
+            document.getElementById(chair).style.fill = "#ff009b";
+            document.getElementById("location_text").innerHTML = "Sitzplatz: " + getLocation() + ":\t" + chair;
+        }
+    }
+    catch(err) {
+        console.log("konnte in url hinterlegten Stuhl nicht finden.")
     }
 }
 
