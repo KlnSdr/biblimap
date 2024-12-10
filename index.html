@@ -6,47 +6,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="viewbox.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <script>
-            $(document).ready(function () {
-                url = getURL(true,true,false);
-                if (url['location'] !== false && url['location'] !== null) {
-                    bib = url['location'];
+        $(document).ready(function () {
+            url = getURL(true, true, false);
+            if (url['location'] !== false && url['location'] !== null) {
+                bib = url['location'];
+            }
+            else {
+                bib = "HTWK";
+                setURL("HTWK", false, false, false);
+            }
+            if (url['lvl'] !== false && url['lvl'] !== null) {
+                lvl = url['lvl'];
+            }
+            else {
+                lvl = 0;
+                setURL(false, lvl, false, false);
+            }
+            $.ajax({
+                url: 'maps/' + bib + '/' + lvl + 'OG.svg',
+                dataType: 'xml',
+                success: function (data) {
+                    $('#svg-container').empty().append(data.documentElement);
+                    // wenn Seite geladen ist init-function aufrufen
+                    document.addEventListener("DOMContentLoaded", init());
+                },
+                error: function () {
+                    alert('Fehler beim Laden der SVG-Datei. Zur vorherigen Etage zurückkehren?');
+                    lvlUpDown(false);
                 }
-                else {
-                    bib = "HTWK";
-                    setURL("HTWK",false,false,false);
-                }
-                if (url['lvl'] !== false && url['lvl'] !== null) {
-                    lvl = url['lvl'];
-                }
-                else {
-                    lvl = 0;
-                    setURL(false,lvl,false,false);
-                }
-                    $.ajax({
-                        url: 'maps/'+bib+'/'+lvl+'OG.svg',
-                        dataType: 'xml',
-                        success: function (data) {
-                            $('#svg-container').empty().append(data.documentElement);
-                            // wenn Seite geladen ist init-function aufrufen
-                            document.addEventListener("DOMContentLoaded", init());
-                        },
-                        error: function () {
-                            alert('Fehler beim Laden der SVG-Datei. Zur vorherigen Etage zurückkehren?');
-                            lvlUpDown(false);
-                        }
-                    });
-                });
+            });
+            $(document).ajaxComplete(function () {
+                initViewBox();
+            });
+        });
     </script>
 
     <ul id="location_banner">
-        <li class="location_li"><div>biblimap - teile deinen Sitzplatz</div></li>
-        <li class="location_li"><div id="location_text">Sitzplatz auswählen</div></li>
+        <li class="location_li">
+            <div>biblimap - teile deinen Sitzplatz</div>
+        </li>
+        <li class="location_li">
+            <div id="location_text">Sitzplatz auswählen</div>
+        </li>
         <li class="location_li"><a onclick="copy_share()">kopieren / teilen</a></li>
         <li class="location_li"><a href="https://github.com/MineErich/biblimap" target="_blank">GitHub</a></li>
     </ul>
@@ -58,7 +66,25 @@
         <button class="nav_btn" id="btn_down" onclick="lvlUpDown(false)">Etage -1</button>
         <button class="nav_btn" id="btn_sel_bib">Bib wählen</button>
     </div>
-    
+
+    <dialog id="dialog_bib">
+        <form>
+            <p>
+                <label>
+                    Bibliothek wählen:
+                    <select>
+                        <option value="HTWK">HTWK</option>
+                        <option value="recht1">Recht 1</option>
+                        <option value="recht2">Recht 2</option>
+                    </select>
+                </label>
+            </p>
+            <div>
+                <button id="dialog_close" value="cancel" formmethod="dialog">Cancel</button>
+                <button id="dialog_conf" value="default">Confirm</button>
+            </div>
+        </form>
+    </dialog>
 </body>
 
 </html>

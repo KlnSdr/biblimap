@@ -1,3 +1,24 @@
+/* BEGIN VIEWBOX */
+body {
+    margin: 0;
+    overflow: hidden; /* Keine Scrollbalken */
+}
+
+#svg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+#svg1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+/* END VIEWBOX */
+
 /* BEGIN SIDE NAV */
 #nav {
     position: fixed;

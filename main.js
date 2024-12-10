@@ -56,7 +56,8 @@ function setURL(location,lvl,chair,refresh) {
 
 function getLocation() {
     // TODO: wichtig, wenn andere Bibs unterstuetzt werden sollen
-    return "HTWK";
+    return getURL(true,false,false)['location'];
+    // return "HTWK";
 }
 
 function isMobile() {
@@ -113,6 +114,31 @@ function whereami(event) {
 
 }
 
+function initDialog() {
+    const showButton = document.querySelector("#btn_sel_bib");
+    const favDialog = document.getElementById("dialog_bib");
+    const selectEl = favDialog.querySelector("select");
+    const confirmBtn = favDialog.querySelector("#dialog_conf");
+
+    // "Show the dialog" button opens the <dialog> modally
+    showButton.addEventListener("click", () => {
+    favDialog.showModal();
+    });
+
+    // "Cancel" button closes the dialog without submitting because of [formmethod="dialog"], triggering a close event.
+    favDialog.addEventListener("close", (e) => {
+        if (favDialog.returnValue != "cancel") {
+            setURL(favDialog.returnValue,"","",true);
+        }
+    });
+
+    // Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
+    confirmBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    favDialog.close(selectEl.value);
+    });
+}
+
 function init() {
     // alle Stuehle mit click-event ausstatten
     var elements = document.getElementsByClassName("rect_chair");
@@ -134,6 +160,8 @@ function init() {
     if (isMobile()) {
         // TODO
     }
+    // Dialog zur Bib-Auswahl definieren
+    initDialog();
 }
 
 function lvlUpDown(updown) {

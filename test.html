@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.6.0.min.js"></script>
+    <title>SVG Zoom und Scroll</title>
+    <style>
+        #svg1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <svg id="svg1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100vw" height="100vh" style="border: 1px solid black;">
+        <rect x="0" y="0" width="100" height="100" fill="lightblue" />
+        <circle cx="50" cy="50" r="30" fill="red" />
+    </svg>
+
+    <!-- <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: 'maps/recht1/0OG.svg',
+                dataType: 'xml',
+                success: function (data) {
+                    $('#svg-container').empty().append(data.documentElement);
+                },
+                error: function () {
+                    alert('Fehler beim Laden der SVG-Datei. Zur vorherigen Etage zurückkehren?');
+                    lvlUpDown(false);
+                }
+            });
+        });
+    </script>
+
+    <div id="svg-container"></div> -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        // $(document).ajaxComplete(function () {
+                const svg = document.getElementById("svg1");
+
+                svg.style.width = "100vw";
+                svg.style.height = "100vh";
+
+                let viewBox = { x: 0, y: 0, width: 100, height: 100 }; // Initiale ViewBox
+
+                // Funktion zum Aktualisieren der ViewBox
+                function updateViewBox() {
+                    svg.setAttribute("viewBox", `${viewBox.x} ${viewBox.y} ${viewBox.width} ${viewBox.height}`);
+                }
+
+                // Zoom-Funktion (mit Zentrierung)
+                function zoom(event) {
+                    event.preventDefault();
+                    const zoomFactor = 1.1; // Zoom-Stärke
+                    const rect = svg.getBoundingClientRect();
+                    const cursorX = event.clientX - rect.left;
+                    const cursorY = event.clientY - rect.top;
+                    const svgX = (cursorX / rect.width) * viewBox.width + viewBox.x;
+                    const svgY = (cursorY / rect.height) * viewBox.height + viewBox.y;
+
+                    if (event.deltaY < 0) { // Hineinzoomen
+                        viewBox.width /= zoomFactor;
+                        viewBox.height /= zoomFactor;
+                    } else { // Herauszoomen
+                        viewBox.width *= zoomFactor;
+                        viewBox.height *= zoomFactor;
+                    }
+
+                    // Zentriere auf den Mauszeiger
+                    viewBox.x = svgX - (cursorX / rect.width) * viewBox.width;
+                    viewBox.y = svgY - (cursorY / rect.height) * viewBox.height;
+
+                    updateViewBox();
+                }
+
+                // Scroll-Funktion (Pan/Schwenken)
+                let isPanning = false;
+                let startPoint = { x: 0, y: 0 };
+
+                function startPan(event) {
+                    isPanning = true;
+                    startPoint.x = event.clientX;
+                    startPoint.y = event.clientY;
+                }
+
+                function pan(event) {
+                    if (!isPanning) return;
+
+                    const dx = (event.clientX - startPoint.x) * (viewBox.width / svg.clientWidth);
+                    const dy = (event.clientY - startPoint.y) * (viewBox.height / svg.clientHeight);
+                    viewBox.x -= dx;
+                    viewBox.y -= dy;
+                    startPoint.x = event.clientX;
+                    startPoint.y = event.clientY;
+
+                    updateViewBox();
+                }
+
+                function endPan() {
+                    isPanning = false;
+                }
+
+                // Event-Listener hinzufügen
+                svg.addEventListener("wheel", zoom);
+                svg.addEventListener("mousedown", startPan);
+                svg.addEventListener("mousemove", pan);
+                svg.addEventListener("mouseup", endPan);
+                svg.addEventListener("mouseleave", endPan);
+            });
+    </script>
+
+</body>
+
+</html>
