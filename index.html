@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 
 <head>
     <title>biblimap</title>
@@ -48,31 +48,32 @@
         });
     </script>
 
-    <ul id="location_banner">
+    <ul id="location_banner" aria-label="Navigation">
         <li class="location_li">
             <div>biblimap - teile deinen Sitzplatz</div>
         </li>
         <li class="location_li">
-            <div id="location_text">Sitzplatz auswählen</div>
+            <div id="location_text" aria-label="Anzeige des augewählten Sitzplatzes">Sitzplatz auswählen</div>
         </li>
-        <li class="location_li"><a onclick="copy_share()">kopieren / teilen</a></li>
-        <li class="location_li"><a href="https://github.com/MineErich/biblimap" target="_blank">GitHub</a></li>
+        <li class="location_li"><a onclick="copy_share()" aria-label="Button, um ausgwählten Sitzplatz zu teilen.">kopieren / teilen</a></li>
+        <li class="location_li"><a href="https://github.com/MineErich/biblimap" target="_blank" aria-label="Link zu dem GitHub Repository dieses Projekts.">GitHub</a></li>
+        <li class="location_li"><a href="faq.html" aria-label="Link zum FAQ dieses Projekts.">FAQ</a></li>
     </ul>
 
-    <div id="svg-container"></div>
+    <div id="svg-container" aria-label="Hier ist der Grundriss einer Etage der ausgwählten Bibliothek zu sehen. Durch klicken auf die blauen Rechtecke im Bild, kann mensch einen Sitzplatz markieren."></div>
 
-    <div id="nav">
-        <button class="nav_btn" id="btn_up" onclick="lvlUpDown(true)">Etage +1</button>
-        <button class="nav_btn" id="btn_down" onclick="lvlUpDown(false)">Etage -1</button>
-        <button class="nav_btn" id="btn_sel_bib">Bib wählen</button>
+    <div id="nav" aria-label="Navigation um sich Grundrisse anderer Etagen und Bibliotheken anzeigen zu lassen.">
+        <button class="nav_btn" id="btn_up" onclick="lvlUpDown(true)" aria-label="Button, um eine Etage höher zu gehen.">Etage +1</button>
+        <button class="nav_btn" id="btn_down" onclick="lvlUpDown(false)" aria-label="Button, um eine Etage nach unten zu gehen">Etage -1</button>
+        <button class="nav_btn" id="btn_sel_bib" aria-label="Button, um eine andere Bibliothek zu wählen.">Bib wählen</button>
     </div>
 
-    <dialog id="dialog_bib">
+    <dialog id="dialog_bib" aria-label="Diese Dialogbox wird geöffnet, wenn der Button zum Auswählen einer Bibliothek gedrückt wird.">
         <form>
             <p>
                 <label>
                     Bibliothek wählen:
-                    <select>
+                    <select aria-label="Auswahlmenü zum Wählen einer Bibliothek">
                         <option value="HTWK">HTWK</option>
                         <option value="recht1">Recht 1</option>
                         <option value="recht2">Recht 2</option>
@@ -80,8 +81,8 @@
                 </label>
             </p>
             <div>
-                <button id="dialog_close" value="cancel" formmethod="dialog">Cancel</button>
-                <button id="dialog_conf" value="default">Confirm</button>
+                <button id="dialog_close" value="cancel" formmethod="dialog" aria-label="Abbrechen der Auswahl einer Bibliothek.">Cancel</button>
+                <button id="dialog_conf" value="default" aria-label="Bestätigen der Auswahl einer Bibliothek.">Confirm</button>
             </div>
         </form>
     </dialog>

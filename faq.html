@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <title>biblimap - FAQ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            width: 50%;
+            margin-left: 25%;
+        }
+        details a, details a:visited {
+            color: black;
+            text-decoration: underline;
+        }
+        details a:hover {
+            color: darkgray;
+        }
+        details:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <ul id="location_banner" aria-label="Navigation">
+        <li class="location_li">
+            <div><a href="index.html">biblimap - teile deinen Sitzplatz</a></div>
+        </li>
+        <li class="location_li"><a href="https://github.com/MineErich/biblimap" target="_blank"
+                aria-label="Link zu dem GitHub Repository dieses Projekts.">GitHub</a></li>
+        <li class="location_li"><a href="faq.html" aria-label="Link zum FAQ dieses Projekts.">FAQ</a></li>
+        <li class="location_li"><a href="https://foxicle.de/datenschutzerklaerung.html" aria-label="Link zur Datenschutzseite.">Datenschutz</a></li>
+    </ul>
+
+    <br><br><br>
+
+    <h1>FAQ zu Biblimap</h1>
+    <p>Biblimap ist ein kleines Tool, welches unter möglichst wenig Entwicklungsaufwand einen gewissen Nutzen erbringen soll: Die Anzeige des Sitzplatzes, auf dem mensch in der Bib sitzt.</p>
+
+    <h3>Fragen (und Antwtorten)</h3>
+    <!-- 
+<details>
+    <summary></summary>
+    <p></p>
+</details>
+
+<a href="https://github.com/MineErich/biblimap/issues">Issue auf GitHub</a>
+-->
+
+    <details>
+        <summary>Warum sind nicht alle Leipziger Bibliotheken vorhanden?</summary>
+        <p>Um Grundrisse hier im Tool anzeigen zu können, braucht es.... die Grundrisse. Diese muss ich raussuchen, oder
+            selbst erstellen. Das braucht Zeit. Eröffne gerne ein <a
+                href="https://github.com/MineErich/biblimap/issues">Issue auf GitHub</a>, wenn du Beitragen, oder mir
+            mitteilen willst, dass ein Grundriss fehlt.</p>
+    </details>
+    <br>
+    <details>
+        <summary>Kannst du Bibliothek XY ergänzen?</summary>
+        <p>Du kannst dazu gerne ein <a href="https://github.com/MineErich/biblimap/issues">Issue auf GitHub</a>
+            eröffnen. Noch besser wäre es, wenn du Bibliotheken anfragen könntest uns die Grundrisse zu geben, damit wir
+            sie hier einbinden können.</p>
+    </details>
+    <br>
+    <details>
+        <summary>Ich habe einen Fehler gefunden!</summary>
+        <p>Bitte eröffne ein <a href="https://github.com/MineErich/biblimap/issues">Issue auf GitHub</a>, wenn es noch
+            kein*e Andere*r gemacht hat. Danke!</p>
+    </details>
+    <br>
+    <details>
+        <summary>Folgendes Feature fehlt: XY!</summary>
+        <p>Bitte eröffne ein <a href="https://github.com/MineErich/biblimap/issues">Issue auf GitHub</a>, wenn es noch
+            kein*e Andere*r gemacht hat. Danke!</p>
+    </details>
+    <br>
+    <details>
+        <summary>Ich möchte das Projekt für eine andere Universität / Stadt nutzen</summary>
+        <p>Auf <a href="https://github.com/MineErich/biblimap/">GitHub</a> liegt der Source Code dieses Projekts. Feel
+            free es weiterzuverwenden. Eine gute Doku gibt es derzeit noch nicht, aber ich helfe gerne weiter.</p>
+    </details>
+    <br>
+    <h3>Über die Implementierung</h3>
+    <p>Die Umsetzung ist sehr einfach gehalten. Keine Frameworks, keine Berechnungen im Backend. Nur HTML, CSS und JavaScript (leider) auf einem Apache2-Server.</p>
+    <p>Es erfolgt auch kein Webtracking und keine Werbung, es gibt keine Cookies und keine Anfragen zu anderen Servern. Toll, oder? Allerdings gibbt es natürlich Logfiles auf den Servern, in welchen einige Daten temporär gesammelt werden. Siehe Datenschutzerklärung.</p>
+    <p>Falls jemensch Lust hat die jquery-Nutzung und die Nutzung von SVG-ViewBoxen zu optimieren, würde ich mich freuen. Schätzungsweise sind 50% des Codes bload und können weg.</p>
+</body>
+
+</html>
