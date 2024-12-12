@@ -9,6 +9,8 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         body {
+            margin: unset;
+            overflow: unset;
             width: 50%;
             margin-left: 25%;
         }
@@ -21,6 +23,12 @@
         }
         details:hover {
             cursor: pointer;
+        }
+        @media only screen and (max-width: 600px) {
+            body {
+                width: 80%;
+                margin-left: 10%;
+            }
         }
     </style>
 </head>
