@@ -62,23 +62,29 @@ function isMobile() {
 function copy_share() {
     // TODO
     pos = getURL(true,true,true);
-    text = "Ich sitze in der "+pos['location']+"-Bib in der Etage "+pos['lvl']+" an Platz "+pos['chair'];
-    const url = new URL(window.location);
-    if (isMobile()) {
-        // share-funktion
-        navigator.share({'text': text,'url':url.href}).then(() => {
-            console.log('called share-mechanism');
-          },() => {
-            console.error('Failed to call share-mechanism');
-          });
-    }
-    else {
-        // copy-funktion
-        navigator.clipboard.writeText(text + " - " + url.href).then(() => {
-            console.log('Content copied to clipboard');
-          },() => {
-            console.error('Failed to copy');
-          });
+    if (pos['location'] !== false && pos['lvl'] !== false && pos['chair'] !== false) {
+        text = "Ich sitze in der "+pos['location']+"-Bib in der Etage "+pos['lvl']+" an Platz "+pos['chair'];
+        const url = new URL(window.location);
+        if (isMobile()) {
+            // share-funktion
+            navigator.share({'text': text,'url':url.href}).then(() => {
+                console.log('shared location');
+              },() => {
+                console.error('Failed to call share-mechanism');
+              });
+        }
+        else {
+            // copy-funktion
+            navigator.clipboard.writeText(text + " - " + url.href).then(() => {
+                console.log('copied location');
+                document.getElementById('btn_cp').style.backgroundColor = 'green';
+                setTimeout(() => {
+                    document.getElementById('btn_cp').style.backgroundColor = 'unset';
+                }, 1000);
+              },() => {
+                console.error('Failed to copy');
+              });
+        }
     }
 }
 
@@ -173,3 +179,23 @@ function lvlUpDown(updown) {
         }
     }
 }
+
+/*
+// dakrmode kommt später
+
+function darkmode() {
+    // background-color auf schwarz
+    document.querySelector('body').style.backgroundColor = "#000000"
+
+    // alle schwarzen elemente auf weiß
+    const rects = document.querySelectorAll('[id^="rect"]');
+    for (var i = 0; i < rects.length; i++) {
+        rect_id = String(rects[i]).split("#")[1];
+        if (document.getElementById(rect_id).style.fill == "#000000") {
+            document.getElementById(rect_id).style.fill == "#FFFFFF";
+        }
+    }
+}
+
+
+*/
