@@ -86,6 +86,9 @@ function copy_share() {
               });
         }
     }
+    else {
+        showErr("Bitte wähle einen Sitzplatz, indem du auf ein blaues Viereck klickst / drückst.");
+    }
 }
 
 function whereami(event) {
@@ -95,12 +98,12 @@ function whereami(event) {
     // Farbe eines u.U. vorher ausgewaehlten Stuhls zuruecksetzen
     try {
         oldchair = getURL(false,false,true)['chair'];
-        if (oldchair !== false) {
+        if (oldchair !== false && document.getElementById(oldchair).className["baseVal"] == "rect_chair") {
             document.getElementById(oldchair).style.fill = "#0000ff";
         }
     }
     catch(err) {
-        console.log("konnte in url hinterlegten Stuhl nicht finden.")
+        console.log("konnte in url hinterlegten Stuhl nicht finden.");
     }
 
     setURL(getURL(true,false,false)['location'],false,chair.id,false)
@@ -139,6 +142,19 @@ function initDialog() {
     });
 }
 
+function showErr(err_msg) {
+    const errDialog = document.getElementById("dia_err");
+    const errText = document.getElementById("dia_err_txt");
+    const errOK = document.getElementById("dia_err_ok");
+    errText.innerHTML = err_msg;
+    errDialog.showModal();
+
+    // "Close" button closes the dialog
+    errOK.addEventListener("click", () => {
+        errDialog.close();
+    });
+}
+
 function init() {
     // alle Stuehle mit click-event ausstatten
     var elements = document.getElementsByClassName("rect_chair");
@@ -146,56 +162,57 @@ function init() {
         elements[i].addEventListener('click', whereami, false);
     }
     // Stuhl (wenn vorhanden) hervorheben
+    // ueberpruefung, ob es ein chair ist wichtig, da in url auch quark stehen kann
     try {
         chair = getURL(false,false,true)['chair'];
-        chair_color = document.getElementById(chair).style.fill;
-        if (chair !== false && (
-                chair_color == "#0000ff" || 
-                chair_color == "#ff009b" ||
-                chair_color == "rgb(0, 0, 255)" ||
-                chair_color == "rgb(255, 0, 155)")) {
+        if (chair !== false && document.getElementById(chair).className.baseVal == "rect_chair") {
             document.getElementById(chair).style.fill = "#ff009b";
             document.getElementById("location_text").innerHTML = "Sitzplatz: " + getURL(true,false,false)['location'] + ":\t" + chair;
         }
     }
     catch(err) {
-        console.log("konnte in url hinterlegten Stuhl nicht finden.")
+        console.log("konnte in url hinterlegten Stuhl nicht finden.");
     }
-    // Dialog zur Bib-Auswahl definieren
-    initDialog();
 }
 
 function lvlUpDown(updown) {
+    // // TODO
     lvl = getURL(false,true,false)['lvl'];
     if (lvl !== false && Number(lvl) !== NaN) {
         lvl = Number(lvl);
-        if (updown) {
-            setURL(false,lvl+1,false,true);
-        }
-        else {
-            if (lvl-1 > -1) {
-                setURL(false,lvl-1,false,true);
+        const metadata = document.querySelector('svg > metadata');
+        if (metadata) {
+            const metaContent = metadata.textContent.trim();
+            const parsedData = JSON.parse(metaContent);
+            current_lvl = parsedData.current_lvl;
+            total_lvl = parsedData.total_lvl;
+            if (updown) {
+                if (Number(current_lvl) + 1 <= total_lvl) { // etage hoch
+                    setURL(false,lvl+1,false,true);                
+                }
+                else {
+                    showErr("Du bist bereits in der höchsten Etage.");
+                }
+            }
+            else {
+                if (Number(current_lvl) - 1 >= 0) {
+                    setURL(false,lvl-1,false,true);
+                }
+                else {
+                    showErr("Du bist bereits in der niedrigsten Etage.");
+                }
             }
         }
     }
 }
 
-/*
-// dakrmode kommt später
-
 function darkmode() {
     // background-color auf schwarz
-    document.querySelector('body').style.backgroundColor = "#000000"
+    document.querySelector('body').style.backgroundColor = "#000000";
 
     // alle schwarzen elemente auf weiß
-    const rects = document.querySelectorAll('[id^="rect"]');
+    const rects = document.getElementsByClassName('wall');
     for (var i = 0; i < rects.length; i++) {
-        rect_id = String(rects[i]).split("#")[1];
-        if (document.getElementById(rect_id).style.fill == "#000000") {
-            document.getElementById(rect_id).style.fill == "#FFFFFF";
-        }
+        rects[i].style.fill = "#6464b9";
     }
 }
-
-
-*/

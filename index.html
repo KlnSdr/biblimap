@@ -27,7 +27,19 @@
                 lvl = url['lvl'];
             }
             else {
-                lvl = 0;
+                switch (bib) {
+                    case "HTWK":
+                        lvl = 0;
+                        break;
+                    case "Recht I":
+                        lvl = 2;
+                        break;
+                    case "Recht II":
+                        lvl = 2;
+                        break;
+                    default:
+                        lvl = 0;
+                }
                 setURL(false, lvl, false, false);
             }
             $.ajax({
@@ -44,6 +56,9 @@
                 }
             });
             $(document).ajaxComplete(function () {
+                // Dialog zur Bib-Auswahl definieren
+                initDialog();
+                // SVG bewegbar machen
                 initViewBox();
             });
         });
@@ -76,8 +91,8 @@
                     Bibliothek wählen:
                     <select aria-label="Auswahlmenü zum Wählen einer Bibliothek">
                         <option value="HTWK">HTWK</option>
-                        <option value="recht1">Recht 1</option>
-                        <option value="recht2">Recht 2</option>
+                        <option value="Recht I">Recht I</option>
+                        <option value="Recht II">Recht II</option>
                     </select>
                 </label>
             </p>
@@ -86,6 +101,11 @@
                 <button id="dialog_conf" value="default" aria-label="Bestätigen der Auswahl einer Bibliothek.">Confirm</button>
             </div>
         </form>
+    </dialog>
+
+    <dialog id="dia_err">
+        <p id="dia_err_txt">Hier sollte eine Fehlermeldung angezeigt werden, aber anscheinend trat ein Fehler beim verarbeiten des Fehlers auf.</p>
+        <button id="dia_err_ok" value="default">OK</button>
     </dialog>
 </body>
 
