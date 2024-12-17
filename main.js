@@ -215,4 +215,13 @@ function darkmode() {
     for (var i = 0; i < rects.length; i++) {
         rects[i].style.fill = "#6464b9";
     }
+
+    // Farbe der Regale aendern
+
+    // side-nav buttons over transparenz und mit weißer schrift
+
+    // Hintergrund der Dialog-Boxen aendern
+    // Farbe der Dialog-Boxen aendern
+
+    // blaue / pinke chairs aendern
 }
