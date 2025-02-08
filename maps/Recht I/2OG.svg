@@ -83,15 +83,15 @@
 <path class="wall" d="m 157.21494,156.99133 c 0.0432,-0.014 1.80401,0.0174 1.80401,0.0174 l 0.0596,1.52081 -0.50378,0.0379 -0.0453,-0.47827 -0.77856,-0.0541 c 0,0 0.0638,-0.40621 -0.002,-0.44125 -0.0656,-0.035 -0.54239,0.0347 -0.54239,0.003 0,-0.0313 0.008,-0.60584 0.008,-0.60584 z" id="path78" style="fill:#000000"></path>
 <path class="wall" d="m 168.70075,153.40108 c 0.007,-0.0987 -0.0202,-1.32163 -0.0202,-1.32163 l 0.88917,-0.005 0.0232,0.46065 0.51113,-0.0499 -0.0303,0.4769 0.61874,0.0313 -0.0271,0.42682 z" id="path79" style="fill:#000000"></path>
 <path class="wall" d="m 171.68262,161.2738 1.63073,-1.01428 1.40979,-1.22357 0.80127,-1.38281 0.16248,-2.44263 -0.19952,-1.92261 -0.5246,-1.02362 -0.83905,-0.76257 c 0,0 -0.95905,-1.1828 -1.33795,-1.26788 -0.37891,-0.0851 -0.8993,-0.56733 -0.9812,-0.54792 -0.0819,0.0194 -0.56629,-0.31079 -0.56629,-0.31079 l 0.23676,-0.919 c 0,0 1.26068,0.27343 1.41058,0.28906 0.1499,0.0156 1.24878,0.96057 1.24878,0.96057 l 1.44464,1.66205 1.08984,2.22937 0.31849,2.14959 -0.6789,2.89899 -1.44183,1.68726 -3.15723,1.8081 z" id="path80" style="fill:#000000"></path>
-<rect class="" height="40.881592" id="rect80" ry="0.2106781" style="fill:#000000" width="9.7937012" x="159.01172" y="101.18018"></rect>
-<rect class="" height="41.248535" id="rect81" ry="0.2106781" style="fill:#000000" width="34.809082" x="171.27661" y="101.13135"></rect>
-<rect class="" height="29.877197" id="rect82" ry="0.2106781" style="fill:#000000" width="13.944336" x="209.59155" y="106.74878"></rect>
-<rect class="" height="41.160645" id="rect83" ry="0.2106781" style="fill:#000000" width="9.7780762" x="227.41626" y="101.10913"></rect>
-<rect class="" height="41.303711" id="rect84" ry="0.2106781" style="fill:#000000" width="9.8908691" x="239.50391" y="101.07275"></rect>
-<rect class="" height="40.869385" id="rect85" ry="0.2106781" style="fill:#000000" width="9.8791504" x="252.84546" y="101.32324"></rect>
-<rect class="" height="40.733887" id="rect86" ry="0.2106781" style="fill:#000000" width="9.510498" x="265.38599" y="101.27612"></rect>
-<rect class="" height="30.451416" id="rect87" ry="0.2106781" style="fill:#000000" width="14.369629" x="278.04736" y="106.29736"></rect>
-<rect class="" height="40.754639" id="rect88" ry="0.2106781" style="fill:#000000" width="28.670166" x="295.82446" y="101.17456"></rect>
+<rect class="wall" height="40.881592" id="rect80" ry="0.2106781" style="fill:#000000" width="9.7937012" x="159.01172" y="101.18018"></rect>
+<rect class="wall" height="41.248535" id="rect81" ry="0.2106781" style="fill:#000000" width="34.809082" x="171.27661" y="101.13135"></rect>
+<rect class="wall" height="29.877197" id="rect82" ry="0.2106781" style="fill:#000000" width="13.944336" x="209.59155" y="106.74878"></rect>
+<rect class="wall" height="41.160645" id="rect83" ry="0.2106781" style="fill:#000000" width="9.7780762" x="227.41626" y="101.10913"></rect>
+<rect class="wall" height="41.303711" id="rect84" ry="0.2106781" style="fill:#000000" width="9.8908691" x="239.50391" y="101.07275"></rect>
+<rect class="wall" height="40.869385" id="rect85" ry="0.2106781" style="fill:#000000" width="9.8791504" x="252.84546" y="101.32324"></rect>
+<rect class="wall" height="40.733887" id="rect86" ry="0.2106781" style="fill:#000000" width="9.510498" x="265.38599" y="101.27612"></rect>
+<rect class="wall" height="30.451416" id="rect87" ry="0.2106781" style="fill:#000000" width="14.369629" x="278.04736" y="106.29736"></rect>
+<rect class="wall" height="40.754639" id="rect88" ry="0.2106781" style="fill:#000000" width="28.670166" x="295.82446" y="101.17456"></rect>
 <text class="wall" id="text1" style="fill:#000000" x="67.085548" xml:space="preserve" y="221.3315"><tspan id="tspan1"></tspan></text>
 <text class="wall" id="text3" style="font-size:2.66667px;text-align:center;text-anchor:middle;fill:#000000" x="78.485153" xml:space="preserve" y="218.08046"><tspan id="tspan3" style="font-size:2.66667px;text-align:center;text-anchor:middle;fill:#000000" x="78.485153" y="218.08046">EINGANG</tspan><tspan id="tspan4" style="font-size:2.66667px;text-align:center;text-anchor:middle;fill:#000000" x="78.485153" y="221.4138">PETERSBOGEN</tspan></text>
 <text class="wall" id="text5" style="font-size:2.66667px;text-align:center;text-anchor:middle;fill:#000000" x="119.90519" xml:space="preserve" y="190.7291"><tspan id="tspan5" style="font-size:2.66667px" x="119.90519" y="190.7291">GARDEROBEN</tspan><tspan id="tspan6" style="font-size:2.66667px" x="119.90519" y="194.06244">SCHLIESSFÄCHER</tspan></text>
