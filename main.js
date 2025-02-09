@@ -77,9 +77,9 @@ function copy_share() {
             // copy-funktion
             navigator.clipboard.writeText(text + " - " + url.href).then(() => {
                 console.log('copied location');
-                document.getElementById('btn_cp').style.backgroundColor = 'green';
+                document.getElementById('location_text').style.backgroundColor = 'green';
                 setTimeout(() => {
-                    document.getElementById('btn_cp').style.backgroundColor = 'unset';
+                    document.getElementById('location_text').style.backgroundColor = 'unset';
                 }, 1000);
               },() => {
                 console.error('Failed to copy');
