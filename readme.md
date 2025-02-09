@@ -30,3 +30,7 @@ Die Umsetzung ist sehr einfach gehalten. Keine Frameworks, keine Berechnungen im
 Es erfolgt auch kein Webtracking und keine Werbung, es gibt keine Cookies und keine Anfragen zu anderen Servern. Toll, oder? Allerdings gibbt es natürlich Logfiles auf den Servern, in welchen einige Daten temporär gesammelt werden. Siehe Datenschutzerklärung.
 
 Falls jemensch Lust hat die jquery-Nutzung und die Nutzung von SVG-ViewBoxen zu optimieren, würde ich mich freuen. Schätzungsweise sind 50% des Codes bloat und können weg.
+
+### Hilfebereich
+
+Falls als Webserver Apache2 zum Einsatz kommt, kann es sein, dass der symlink von /icons zu /usr/share/apache2/icons/ in der Datei "/etc/apache2/mods-available/alias.conf" angepasst werden muss, da es sonst zu Umleitungsfehlern kommt. Ich habe in der Datei den Eintrag zu /apache-icons geändert und mit systemctl restart apache2 den service neugestartet.
