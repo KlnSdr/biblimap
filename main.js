@@ -155,6 +155,22 @@ function showErr(err_msg) {
     });
 }
 
+function replaceHeader() {
+    const newHeader = `
+<a href="index.html">biblimap</a>
+<a href="https://github.com/MineErich/biblimap" target="_blank" aria-label="Link zu dem GitHub Repository dieses Projekts."><img class="gh_img" alt="Link to GitHub" src="icons/github-mark-white.svg"></a>
+<a href="faq.html" aria-label="Link zum FAQ dieses Projekts.">FAQ</a>
+<a onclick="change_darkmode()" aria-label="Button, um vom hellen in den dunklen Modus zu wechseln."><img id="img_dm" alt="Darkmode preferences" src="icons/darkmode.svg"></a>
+<div class="select_seat">
+    <div id="location_text" aria-label="Anzeige des augewählten Sitzplatzes">Sitzplatz auswählen</div>
+    <a onclick="copy_share()" aria-label="Button, um ausgwählten Sitzplatz zu teilen."><img alt="copy / share" src="icons/cp.svg"></a>
+</div>
+    `;
+    
+    document.getElementById("header").innerHTML = newHeader;
+    set_darkmode_svg();
+}
+
 function init() {
     // alle Stuehle mit click-event ausstatten
     var elements = document.getElementsByClassName("rect_chair");
@@ -172,6 +188,9 @@ function init() {
     }
     catch(err) {
         console.log("konnte in url hinterlegten Stuhl nicht finden.");
+    }
+    if (isMobile()) {
+        replaceHeader();
     }
 }
 
@@ -206,22 +225,30 @@ function lvlUpDown(updown) {
     }
 }
 
-function darkmode() {
-    // background-color auf schwarz
-    document.querySelector('body').style.backgroundColor = "#000000";
-
-    // alle schwarzen elemente auf weiß
-    const rects = document.getElementsByClassName('wall');
-    for (var i = 0; i < rects.length; i++) {
-        rects[i].style.fill = "#6464b9";
+function restore_darkmode() {
+    if (localStorage.getItem("darkmode") !== "false" && window.matchMedia("(prefers-color-scheme:dark)").matches) {
+        document.body.classList.add("darkmode");
     }
+}
 
-    // Farbe der Regale aendern
+function set_darkmode_svg() {
+    if (localStorage.getItem("darkmode") === "true") {
+        document.getElementById("img_dm").src = "icons/lightmode.svg";
+    }
+    else {
+        document.getElementById("img_dm").src = "icons/darkmode.svg";
+    }
+}
 
-    // side-nav buttons over transparenz und mit weißer schrift
-
-    // Hintergrund der Dialog-Boxen aendern
-    // Farbe der Dialog-Boxen aendern
-
-    // blaue / pinke chairs aendern
+function change_darkmode() {
+    if (document.body.classList.contains('darkmode')) {
+        document.body.classList.remove("darkmode");
+        localStorage.setItem("darkmode", "false");
+        document.getElementById("img_dm").src = "icons/darkmode.svg";
+    }
+    else {
+        document.body.classList.add("darkmode");
+        localStorage.setItem("darkmode", "true");
+        document.getElementById("img_dm").src = "icons/lightmode.svg";
+    }
 }

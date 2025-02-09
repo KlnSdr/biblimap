@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="de">
 
+
+<!-- 
++++++++++++++++++++++++++++++++++++++++
+FIXME TODO: header-nav ist kaputt
++++++++++++++++++++++++++++++++++++++++
+-->
+
 <head>
     <title>biblimap - FAQ</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/landingpage.css">
+    <script src="main.js"></script>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
-        body {
+        /* body {
             margin: unset;
             overflow: unset;
             width: 50%;
             margin-left: 25%;
-        }
+        } */
         details a, details a:visited {
             color: black;
             text-decoration: underline;
@@ -34,19 +43,22 @@
 </head>
 
 <body>
+    <script>window.onload = restore_darkmode();</script>
+    <header class="header" id="header_faq">
+        <a id="header_title" href="index.html">biblimap - teile deinen Sitzplatz</a>
+        <!-- <a id="header_faq" href="faq.html" aria-label="Link zum FAQ dieses Projekts.">FAQ</a> -->
+        <a href="https://foxicle.de/datenschutzerklaerung.html" aria-label="Link zur Datenschutzseite.">Datenschutz</a>
+        <a href="https://github.com/MineErich/biblimap" target="_blank" aria-label="Link zu dem GitHub Repository dieses Projekts."><img class="gh_img" alt="Link to GitHub" src="icons/github-mark-white.svg"></a>
+        <a onclick="change_darkmode()" aria-label="Button, um vom hellen in den dunklen Modus zu wechseln."><img id="img_dm" alt="Darkmode preferences" src="icons/darkmode.svg"></a>
+    </header>
 
-    <ul id="location_banner" aria-label="Navigation">
-        <li class="location_li">
-            <div><a href="index.html">biblimap - teile deinen Sitzplatz</a></div>
-        </li>
-        <li class="location_li"><a href="https://github.com/MineErich/biblimap" target="_blank"
-                aria-label="Link zu dem GitHub Repository dieses Projekts.">GitHub</a></li>
-        <li class="location_li"><a href="faq.html" aria-label="Link zum FAQ dieses Projekts.">FAQ</a></li>
-        <li class="location_li"><a href="https://foxicle.de/datenschutzerklaerung.html" aria-label="Link zur Datenschutzseite.">Datenschutz</a></li>
-    </ul>
+    <div id="abstand_nav"></div>
 
-    <br><br><br>
+    <script>
+        document.getElementById("abstand_nav").style.height = document.getElementById("header_faq").offsetHeight + "px";
+    </script>
 
+    <div class="dm_ena">
     <h1>FAQ zu Biblimap</h1>
     <p>Biblimap ist ein kleines Tool, welches unter möglichst wenig Entwicklungsaufwand einen gewissen Nutzen erbringen soll: Die Anzeige des Sitzplatzes, auf dem mensch in der Bib sitzt.</p>
 
@@ -97,6 +109,10 @@
     <p>Die Umsetzung ist sehr einfach gehalten. Keine Frameworks, keine Berechnungen im Backend. Nur HTML, CSS und JavaScript (leider) auf einem Apache2-Server.</p>
     <p>Es erfolgt auch kein Webtracking und keine Werbung, es gibt keine Cookies und keine Anfragen zu anderen Servern. Toll, oder? Allerdings gibt es natürlich Logfiles auf den Servern, in welchen einige Daten temporär gesammelt werden. Siehe Datenschutzerklärung.</p>
     <p>Falls jemensch Lust hat die jquery-Nutzung und die Nutzung von SVG-ViewBoxen zu optimieren, würde ich mich freuen. Schätzungsweise sind 50% des Codes bloat und können weg.</p>
+</div>
+<script> 
+    if (isMobile()) { document.getElementById("header_title").innerHTML = "biblimap"; } 
+</script>
 </body>
 
 </html>

@@ -1,0 +1,87 @@
+body {
+    margin: unset;
+    overflow: unset;
+    width: 50%;
+    margin-left: 25%;
+}
+
+.header {
+    padding-left: 25%;
+}
+
+#grid_htwk {
+    background-image: url("../icons/htwk.jpg");
+}
+
+#grid_r1 {
+    background-image: url("../icons/r1.jpg");
+}
+
+#grid_r2 {
+    background-image: url("../icons/r2.jpg");
+}
+
+.grid_ele {
+    transition: transform .2s;
+    background-size: cover;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+}
+
+.grid_ele:hover {
+    transform: scale(1.1);
+}
+
+.grid h3 {
+    background-color: rgba(255, 255, 255, 0.829);
+    color: black;
+    width:fit-content;
+    padding: 1%;
+    margin: 0;
+}
+
+.grid p {
+    background-color: rgba(255, 255, 255, 0.829);
+    color: black;
+    width:fit-content;
+    padding: 1%;
+}
+
+.grid_bottom {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 0;
+    font-size: small;
+    display: flex;
+    align-items: center;
+    padding: 1px !important;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 1vw;
+    row-gap: 1vh;
+}
+
+.grid>div {
+    position: relative;
+    font-size: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+    .grid {
+        grid-template-columns: auto;
+    }
+    body {
+        margin: unset;
+        overflow: unset;
+        width: 90%;
+        margin-left: 5%;
+    }
+    .header {
+        padding-left: unset;
+        gap: normal;
+    }
+}
+

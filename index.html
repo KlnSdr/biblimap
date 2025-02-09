@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="light">
 
 <head>
     <title>biblimap</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="main.js"></script>
-    <script src="jquery-3.6.0.min.js"></script>
-    <script src="viewbox.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/landingpage.css">
+    <script src="main.js"></script>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <meta name="description" content="biblimap: teile deinen Sitzplatz mit Freund*innen. Für die Bibliotheken der HTWK und Universität Leipzig">
+    <meta name="description"
+        content="biblimap: teile deinen Sitzplatz mit Freund*innen. Für die Bibliotheken der HTWK und Universität Leipzig">
     <meta name="robots" content="index, follow">
     <script type="application/ld+json">
         {
@@ -20,117 +20,117 @@
             "@type": "ListItem",
             "position": 1,
             "name": "HTWK-Bibliothek",
-            "item": "https://biblimap.foxicle.de/?location=HTWK"
+            "item": "https://biblimap.foxicle.de/biblimap.html?location=HTWK"
           },{
             "@type": "ListItem",
             "position": 2,
             "name": "Recht I-Bibliothek",
-            "item": "https://biblimap.foxicle.de/?location=Recht+I"
+            "item": "https://biblimap.foxicle.de/biblimap.html?location=Recht+I"
           },{
             "@type": "ListItem",
             "position": 3,
             "name": "Recht II-Bibliothek",
-            "item": "https://biblimap.foxicle.de/?location=Recht+II"
+            "item": "https://biblimap.foxicle.de/biblimap.html?location=Recht+II"
           }]
+        }
+    </script>
+    <script>
+        function isOpen(bib) {
+            const d = new Date();
+            let hour = d.getHours();
+            let day = d.getDay();
+            switch (bib) {
+                case "htwk": /* mo-fr 9-20 sa 9-16 */
+                    if (day <= 5 && day >= 1 && hour >= 9 && hour < 20)
+                        return true;
+                    if (day == 6 && hour >= 9 && hour < 16)
+                        return true;
+                    return false;
+                    break;
+
+                case "r1": /* mo-fr 8-22 sa-so 10-20 */
+                    if (day <= 5 && day >= 1 && hour >= 8 && hour < 22)
+                        return true;
+                    if ((day == 6 || day == 0) && hour >= 10 && hour < 20)
+                        return true;
+                    return false;
+                    break;
+
+                case "r2": /* mo-fr 8-22 sa-so 10-20 */
+                    if (day <= 5 && day >= 1 && hour >= 8 && hour < 22)
+                        return true;
+                    if ((day == 6 || day == 0) && hour >= 10 && hour < 20)
+                        return true;
+                    return false;
+                    break;
+            }
+        }
+        function setOpen(bib, element) {
+            if (isOpen(bib)) {
+                document.getElementById(element).innerHTML= "<img src=\"icons/check.svg\"> Geöffnet";
+            } else {
+                document.getElementById(element).innerHTML = "<img src=\"icons/nope.svg\"> Geschlossen";
+            }
         }
     </script>
 </head>
 
 <body>
+    <script>window.onload = restore_darkmode();</script>
+    <header class="header" id="header_lp">
+        <a id="header_title" href="index.html">biblimap - teile deinen Sitzplatz</a>
+        <a href="faq.html" aria-label="Link zum FAQ dieses Projekts.">FAQ</a>
+        <a href="https://foxicle.de/datenschutzerklaerung.html" aria-label="Link zur Datenschutzseite.">Datenschutz</a>
+        <a href="https://github.com/MineErich/biblimap" target="_blank" aria-label="Link zu dem GitHub Repository dieses Projekts."><img class="gh_img" alt="Link to GitHub" src="icons/github-mark-white.svg"></a>
+        <a onclick="change_darkmode()" aria-label="Button, um vom hellen in den dunklen Modus zu wechseln."><img id="img_dm" alt="Darkmode preferences" src="icons/darkmode.svg"></a>
+    </header>
+
+    <div id="abstand_nav"></div>
+
     <script>
-        $(document).ready(function () {
-            url = getURL(true, true, false);
-            if (url['location'] !== false && url['location'] !== null) {
-                bib = url['location'];
-            }
-            else {
-                bib = "HTWK";
-                setURL("HTWK", false, false, false);
-            }
-            if (url['lvl'] !== false && url['lvl'] !== null) {
-                lvl = url['lvl'];
-            }
-            else {
-                switch (bib) {
-                    case "HTWK":
-                        lvl = 0;
-                        break;
-                    case "Recht I":
-                        lvl = 2;
-                        break;
-                    case "Recht II":
-                        lvl = 2;
-                        break;
-                    default:
-                        lvl = 0;
-                }
-                setURL(false, lvl, false, false);
-            }
-            $.ajax({
-                url: 'maps/' + bib + '/' + lvl + 'OG.svg',
-                dataType: 'xml',
-                success: function (data) {
-                    $('#svg-container').empty().append(data.documentElement);
-                    // wenn Seite geladen ist init-function aufrufen
-                    document.addEventListener("DOMContentLoaded", init());
-                },
-                error: function () {
-                    alert('Fehler beim Laden der SVG-Datei: Bitte prüfe, ob der Link korrekt ist. Du wirst zur Startseite zurückgeleitet.');
-                    setURL("HTWK", 0, false, true);
-                }
-            });
-            $(document).ajaxComplete(function () {
-                // Dialog zur Bib-Auswahl definieren
-                initDialog();
-                // SVG bewegbar machen
-                initViewBox();
-            });
-        });
+        document.getElementById("abstand_nav").style.height = document.getElementById("header_lp").offsetHeight + "px";
     </script>
 
-    <ul id="location_banner" aria-label="Navigation">
-        <li class="location_li">
-            <div>biblimap - teile deinen Sitzplatz</div>
-        </li>
-        <li class="location_li">
-            <div id="location_text" aria-label="Anzeige des augewählten Sitzplatzes">Sitzplatz auswählen</div>
-        </li>
-        <li class="location_li" id="btn_cp"><a onclick="copy_share()" aria-label="Button, um ausgwählten Sitzplatz zu teilen.">kopieren / teilen</a></li>
-        <li class="location_li"><a href="https://github.com/MineErich/biblimap" target="_blank" aria-label="Link zu dem GitHub Repository dieses Projekts.">GitHub</a></li>
-        <li class="location_li"><a href="faq.html" aria-label="Link zum FAQ dieses Projekts.">FAQ</a></li>
-    </ul>
+    <h1 class="dm_ena">biblimap</h1>
 
-    <div id="svg-container" aria-label="Hier ist der Grundriss einer Etage der ausgwählten Bibliothek zu sehen. Durch klicken auf die blauen Rechtecke im Bild, kann mensch einen Sitzplatz markieren."></div>
+    <p class="dm_ena">Teile deinen Sitzplatz mit Freund*innen.</p>
 
-    <div id="nav" aria-label="Navigation um sich Grundrisse anderer Etagen und Bibliotheken anzeigen zu lassen.">
-        <button class="nav_btn" id="btn_up" onclick="lvlUpDown(true)" aria-label="Button, um eine Etage höher zu gehen.">Etage +1</button>
-        <button class="nav_btn" id="btn_down" onclick="lvlUpDown(false)" aria-label="Button, um eine Etage nach unten zu gehen">Etage -1</button>
-        <button class="nav_btn" id="btn_sel_bib" aria-label="Button, um eine andere Bibliothek zu wählen.">Bib wählen</button>
+    <p class="dm_ena">Für die Bibliotheken der HTWK Leipzig sowie der Uni Leipzig Bibliotheken Recht I und Recht II.</p>
+
+    <div class="grid">
+        <div id="grid_htwk" class="grid_ele">
+            <h3>HTWK</h3>
+            <p id="p_htwk"></p>
+            <script>setOpen("htwk","p_htwk");</script>
+            <p class="grid_bottom"><img src="icons/location.svg" alt="image of locaiton-needle">Gustav-Freytag-Straße 40 - 04277 Leipzig</p>
+        </div>
+        <div id="grid_r1" class="grid_ele">
+            <h3>Recht I</h3>
+            <p id="p_r1"></p>
+            <script>setOpen("r1","p_r1");</script>
+            <p class="grid_bottom"><img src="icons/location.svg" alt="image of locaiton-needle">Burgstr. 27 - 04109 Leipzig</p>
+        </div>
+        <div id="grid_r2" class="grid_ele">
+            <h3>Recht II</h3>
+            <p id="p_r2"></p>
+            <script>setOpen("r2","p_r2");</script>
+            <p class="grid_bottom"><img src="icons/location.svg" alt="image of locaiton-needle">Burgstr. 21 - 04109 Leipzig</p>
+        </div>
+
     </div>
+    <script>
+        document.getElementById("grid_htwk").addEventListener("click", function() {
+            window.location.href = 'biblimap.html?location=HTWK&lvl=0';
+        });
+        document.getElementById("grid_r1").addEventListener("click", function() {
+                window.location.href = 'biblimap.html?location=Recht+I&lvl=2';
+        });
+        document.getElementById("grid_r2").addEventListener("click", function() {
+            window.location.href = 'biblimap.html?location=Recht+II&lvl=2';
+        });
 
-    <dialog id="dialog_bib" aria-label="Diese Dialogbox wird geöffnet, wenn der Button zum Auswählen einer Bibliothek gedrückt wird.">
-        <form>
-            <p>
-                <label>
-                    Bibliothek wählen:
-                    <select aria-label="Auswahlmenü zum Wählen einer Bibliothek">
-                        <option value="HTWK">HTWK</option>
-                        <option value="Recht I">Recht I</option>
-                        <option value="Recht II">Recht II</option>
-                    </select>
-                </label>
-            </p>
-            <div>
-                <button id="dialog_close" value="cancel" formmethod="dialog" aria-label="Abbrechen der Auswahl einer Bibliothek.">Cancel</button>
-                <button id="dialog_conf" value="default" aria-label="Bestätigen der Auswahl einer Bibliothek.">Confirm</button>
-            </div>
-        </form>
-    </dialog>
-
-    <dialog id="dia_err">
-        <p id="dia_err_txt">Hier sollte eine Fehlermeldung angezeigt werden, aber anscheinend trat ein Fehler beim verarbeiten des Fehlers auf.</p>
-        <button id="dia_err_ok" value="default">OK</button>
-    </dialog>
+        if (isMobile()) {
+            document.getElementById("header_title").innerHTML = "";
+        }
+    </script>
 </body>
-
-</html>
