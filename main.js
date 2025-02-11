@@ -165,6 +165,7 @@ function replaceHeader() {
 <a href="https://github.com/MineErich/biblimap" target="_blank" aria-label="Link zu dem GitHub Repository dieses Projekts."><img class="gh_img" alt="Link to GitHub" src="icons/github-mark-white.svg"></a>
 <a href="faq.html" aria-label="Link zum FAQ dieses Projekts.">FAQ</a>
 <a onclick="change_darkmode()" aria-label="Button, um vom hellen in den dunklen Modus zu wechseln."><img id="img_dm" alt="Darkmode preferences" src="icons/darkmode.svg"></a>
+<a onclick="showHelp()" aria-label="Hilfe"><img alt="Hilfestellung" src="icons/help.svg"></a>
 <div class="select_seat">
     <div id="location_text" aria-label="Anzeige des augewählten Sitzplatzes">Sitzplatz auswählen</div>
     <a onclick="copy_share()" aria-label="Button, um ausgwählten Sitzplatz zu teilen."><img alt="copy / share" src="icons/cp.svg"></a>
