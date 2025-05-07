@@ -29,7 +29,7 @@ Die Umsetzung ist sehr einfach gehalten. Keine Frameworks, keine Berechnungen im
 
 Es erfolgt auch kein Webtracking und keine Werbung, es gibt keine Cookies und keine Anfragen zu anderen Servern. Toll, oder? Allerdings gibbt es natürlich Logfiles auf den Servern, in welchen einige Daten temporär gesammelt werden. Siehe Datenschutzerklärung.
 
-Falls jemensch Lust hat die jquery-Nutzung und die Nutzung von SVG-ViewBoxen zu optimieren, würde ich mich freuen. Schätzungsweise sind 50% des Codes bloat und können weg.
+Falls jemensch Lust hat die Nutzung von SVG-ViewBoxen zu optimieren, würde ich mich freuen. Schätzungsweise sind 50% des Codes bloat und können weg.
 
 ### Hilfebereich
 
